@@ -221,11 +221,11 @@ var pgfplotsAxisRegistry = new Object();
 pgfplotsAxisRegistry["rectangle"] = function( axisAnnotObj ) { return new PGFPlotsAxis( axisAnnotObj ); }
 pgfplotsAxisRegistry["ternary"] = function( axisAnnotObj ) { return new PGFPlotsTernaryAxis( axisAnnotObj ); }
 
-function PGFPlotsClassExtend( child, superClass )
+function PGFPlotsClassExtend( child, super )
 {
-for (var property in superClass.prototype) {
+for (var property in super.prototype) {
 if (typeof child.prototype[property] == "undefined")
-child.prototype[property] = superClass.prototype[property];
+child.prototype[property] = super.prototype[property];
 }
 return child;
 }
