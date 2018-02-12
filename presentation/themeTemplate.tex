@@ -137,6 +137,7 @@
 
 \newcommand{\pie}[3][]{
     \begin{scope}[#1]
+    \pgfmathsetmacro{\PercentThreshold}{8}
     \pgfmathsetmacro{\curA}{90}
     \pgfmathsetmacro{\r}{1}
     \def\c{(0,0)}
@@ -150,7 +151,14 @@
             -- +(\curA:\r)
             arc (\curA:\nextA:\r)
             -- cycle;
-        \pgfmathsetmacro{\d}{max((\deltaA * -(.5/50) + 1) , .5)}
+        \pgfmathsetmacro{\d}{
+	\ifnum \v > \PercentThreshold
+	.55
+	\else
+	1.1
+	\fi
+        %max((\deltaA * -(.2/50) + 1.) , .5)
+        }
 
         \begin{pgfonlayer}{foreground}
         \path \c -- node[pos=\d,pie values,values of \s]{$\v\%$} +(\midA:\r);
